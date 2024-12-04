@@ -30,3 +30,7 @@ export function generateCommonSASS(tagName: string, hash: string, generateCommon
         return css;
     }
 }
+
+export function isBrowser(){
+    return !(typeof(window) === "undefined");
+}

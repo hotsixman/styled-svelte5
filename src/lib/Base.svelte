@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { browser } from "$app/environment";
     import type { Snippet } from "svelte";
+    import { isBrowser } from "./utils.js";
 
     type Props = {
         tagName: string;
@@ -17,7 +17,7 @@
         {@html generateSass(restProps)}
     </svelte:element>
     -->
-    {#if browser}
+    {#if isBrowser()}
         <svelte:element this={"style"}>
             {@html generateSass(restProps)}
         </svelte:element>

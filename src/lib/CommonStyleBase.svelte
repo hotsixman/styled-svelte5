@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { browser } from "$app/environment";
+    import { isBrowser } from "./utils.js";
 
     interface Props {
         generateCommonSass: (props: Record<string, any>) => string;
@@ -9,7 +9,7 @@
 </script>
 
 <svelte:head>
-    {#if browser}
+    {#if isBrowser()}
         <svelte:element this={"style"}>
             {@html generateCommonSass(restProps)}
         </svelte:element>
