@@ -1,10 +1,10 @@
-# Styled Svelte Component
+# Styled-Svelte5
 
-You can create a styled component for svelte, which is responsive to props, so you can create a component that changes style depending on the situation. You can also use the event handler.
+You can create a styled component for svelte5, which is responsive to props, so you can create a component that changes style depending on the situation. You can also use the event handler.
 
 ## install
 
-`npm i styled-svelte-component`
+`npm i styled-svelte5`
 
 ## How to use
 
@@ -30,7 +30,7 @@ const SampleDiv = styled<{color:string}>( //You can set types of props here.
 ```
 
 <script lang="ts">
-import createSSC from 'styled-svelte-component/svelte4';
+import createSSC from 'styled-svelte5';
 
 const SampleDiv = styled<{color:string}, {hoverColor: string}>( //You can set types of props here.
     'div', //tag name
