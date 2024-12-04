@@ -19,3 +19,14 @@ export function generateSASS(tagName: string, hash: string, generateStyle: (...a
         return css;
     }
 }
+
+export function generateCommonSASS(tagName: string, hash: string, generateCommonStyle: (...args: any[]) => string, restProps?: Record<string, unknown>) {
+    const style = generateCommonStyle(restProps);
+    const css = `${tagName}.${`common-styled-svelte-${hash}`}{${style}}`;
+    try {
+        const sass = compileString(css, {silenceDeprecations: ['mixed-decls']});
+        return sass.css;
+    } catch {
+        return css;
+    }
+}
