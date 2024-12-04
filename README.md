@@ -10,7 +10,7 @@ You can create a styled component for svelte5, which is responsive to props, so 
 
 ```svelte
 <script lang="ts">
-import createSSC from 'styled-svelte5';
+import styled from 'styled-svelte5';
 
 const SampleDiv = styled<{color:string}>( //You can set types of props here.
     'div', //tag name
@@ -30,7 +30,7 @@ const SampleDiv = styled<{color:string}>( //You can set types of props here.
 ```
 
 <script lang="ts">
-import createSSC from 'styled-svelte5';
+import styled from 'styled-svelte5';
 
 const SampleDiv = styled<{color:string}, {hoverColor: string}>( //You can set types of props here.
     'div', //tag name
