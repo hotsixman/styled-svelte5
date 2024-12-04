@@ -29,6 +29,7 @@ const SampleDiv = styled<{color:string}>( //You can set types of props here.
 </SampleDiv>
 ```
 
+```svelte
 <script lang="ts">
 import styled from 'styled-svelte5';
 
@@ -56,3 +57,4 @@ const SampleDiv = styled<{color:string}, {hoverColor: string}>( //You can set ty
 <SampleDiv backgroundColor="blue">
     Snom is Ass
 </SampleDiv>
+```
