@@ -12,7 +12,7 @@ You can create a styled component for svelte5, which is responsive to props, so 
 <script lang="ts">
 import styled from 'styled-svelte5';
 
-const SampleDiv = styled<{color:string}>( //You can set types of props here.
+const SampleDiv = styled<{color:string, backgroundColor: string}>( //You can set types of props here.
     'div', //tag name
     ({backgroundColor, color}) => `
         background-color:${backgroundColor};
@@ -33,7 +33,7 @@ const SampleDiv = styled<{color:string}>( //You can set types of props here.
 <script lang="ts">
 import styled from 'styled-svelte5';
 
-const SampleDiv = styled<{color:string}, {hoverColor: string}>( //You can set types of props here.
+const SampleDiv = styled<{backgroundColor:string}, {hoverColor: string}>( //You can set types of props here.
     'div', //tag name
     ({backgroundColor}) => `
         background-color: ${backgroundColor};
@@ -48,12 +48,12 @@ const SampleDiv = styled<{color:string}, {hoverColor: string}>( //You can set ty
 
 <SampleDiv.common hoverColor="purple"/>
 
-<!-- Red background color and purple text color when hover -->
+<!-- Red background color, and purple text color when hover -->
 <SampleDiv backgroundColor="red">
     Snom is Ass
 </SampleDiv>
 
-<!-- Blue background color and purple text color when hover -->
+<!-- Blue background color, and purple text color when hover -->
 <SampleDiv backgroundColor="blue">
     Snom is Ass
 </SampleDiv>
