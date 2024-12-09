@@ -5,7 +5,7 @@
     let background = $state("blue");
     const RedDiv = styled<{color: string}, {background: string}>('div', ({color}) => `color: ${color};`, ({background}) => `background-color:${background}; &::before{content: '<'}`);
 
-    console.log()
+    const TestDiv = styled<{color:string}>('div', () => '');
 </script>
 
 <input type="text" bind:value={color}>

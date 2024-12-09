@@ -1,6 +1,6 @@
 import Base from "./Base.svelte";
 import { generateCommonSASS, generateSASS, hash } from "./utils.js";
-import type { StyledSvelteComponent, StyledSvelteComponentWithCommonStyle } from "./types.js";
+import type { StyledSvelteComponent, StyledSvelteComponentData, StyledSvelteComponentDataWithCommonStyle, StyledSvelteComponentWithCommonStyle } from "./types.js";
 import CommonStyleBase from "./CommonStyleBase.svelte";
 
 export function styled<T extends Record<string, any>>(tagName: string, generateStyle: (props: T) => string): StyledSvelteComponent<T>;
@@ -30,25 +30,25 @@ export function styled<T extends Record<string, any>, U extends Record<string, a
 
     const StyledComponent = new Proxy(Base, {
         get(target, props, receiver) {
-            if (props === "generateStyle") {
-                return generateStyle;
+            if(props === "common" && useCommonStyle){
+                return StyledComponentCommon as unknown as StyledSvelteComponentWithCommonStyle<T, U>['common'];
             }
-            else {
-                if (useCommonStyle) {
-                    if (props === "common") {
-                        return StyledComponentCommon as unknown as StyledSvelteComponentWithCommonStyle<T, U>['common'];
-                    }
-                    else if (props === "generateCommonStyle") {
-                        return generateCommonStyle;
-                    }
-                    else {
-                        return Reflect.get(target, props, receiver);
-                    }
+            if(props === "styledComponentData"){
+                if(useCommonStyle){
+                    return {
+                        tagName,
+                        generateStyle,
+                        generateCommonStyle
+                    } as StyledSvelteComponentDataWithCommonStyle<T, U>
                 }
-                else {
-                    return Reflect.get(target, props, receiver);
+                else{
+                    return {
+                        tagName,
+                        generateStyle
+                    } as StyledSvelteComponentData<T>
                 }
             }
+            return Reflect.get(target, props, receiver);
         },
         apply(target, thisArg, argArray) {
             const props = argArray[1];
@@ -69,7 +69,7 @@ export function styled<T extends Record<string, any>, U extends Record<string, a
             props.tagName = tagName;
             return Reflect.apply(target, thisArg, argArray);
         }
-    }) as unknown as StyledSvelteComponentWithCommonStyle<T, U>
+    }) as unknown;
 
     return StyledComponent;
 }
