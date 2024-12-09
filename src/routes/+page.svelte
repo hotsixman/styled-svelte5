@@ -1,15 +1,13 @@
 <script lang="ts">
     import { styled } from "$lib/styled.js";
+    import { RedDiv } from "./+layout.svelte";
 
     let color = $state("red");
-    let background = $state("blue");
-    const RedDiv = styled<{color: string}, {background: string}>('div', ({color}) => `color: ${color};`, ({background}) => `background-color:${background}; &::before{content: '<'}`);
 
     const TestDiv = styled<{color:string}>('div', () => '');
 </script>
 
 <input type="text" bind:value={color}>
-<input type="text" bind:value={background}>
 <RedDiv {color}>
     ㅎㅇ
 </RedDiv>
@@ -19,4 +17,3 @@
 <RedDiv color="blue">
     ㅎㅇ
 </RedDiv>
-<RedDiv.common {background}/>
