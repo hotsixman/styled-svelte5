@@ -1,27 +1,24 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
     import { isBrowser } from "./utils.js";
-    import { browser } from "$app/environment";
+    import type { GenerateStyle } from "./types.js";
 
     type Props = {
         tagName: string;
         children?: Snippet;
-        generateSass: (props: Record<string, any>) => string;
+        generateSass: GenerateStyle<Record<string, any>> | null;
     } & Record<string, any>;
 
     let { tagName, children, generateSass, ...restProps }: Props = $props();
 </script>
 
 <svelte:head>
-    <!--
-    <svelte:element this={"style"}>
-        {@html generateSass(restProps)}
-    </svelte:element>
-    -->
-    {#if isBrowser()}
-        {@html `<style>${generateSass(restProps)}</style>`}
-    {:else}
-        {@html `<style>${generateSass(restProps)}</style>`}
+    {#if generateSass}
+        {#if isBrowser()}
+            {@html `<style>${generateSass(restProps)}</style>`}
+        {:else}
+            {@html `<style>${generateSass(restProps)}</style>`}
+        {/if}
     {/if}
 </svelte:head>
 

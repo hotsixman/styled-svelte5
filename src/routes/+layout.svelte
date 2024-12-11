@@ -1,7 +1,7 @@
 <script lang="ts" module>
     import { styled } from "$lib/styled.js";
 
-    export const RedDiv = styled<{color: string}, {background: string}>('div', ({color}) => `color: ${color};`, ({background}) => `background-color:${background}; &::before{content: '<'}`);
+    export const RedDiv = styled<{color: string}, {background: string}>('div', ({color}) => `background-color: ${color};`, ({background}) => `background-color:${background}; &::before{content: '<'}`);
 </script>
 
 <script lang="ts">
